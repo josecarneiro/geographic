@@ -1,3 +1,5 @@
+'use strict';
+
 const version = require('./../package').version;
 
 module.exports = class Point {
@@ -45,7 +47,7 @@ module.exports = class Point {
       }
     }
     // BROWSER GEOLOCATION
-    else if (coordinates.constructor && coordinates.constructor.name === 'Geoposition') {
+    else if (coordinates.constructor && coordinates.constructor.name === 'Position') {
       this._coordinates = {
         latitude: coordinates.coords.latitude,
         longitude: coordinates.coords.longitude

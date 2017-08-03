@@ -1,3 +1,3 @@
 module.exports = {
-  "extends": "./../../test/.eslintrc.js"
+  "extends": "@twiz/eslint-config-twiz/test"
 };
