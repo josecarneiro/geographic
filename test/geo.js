@@ -3,4 +3,5 @@
 /* EASY ID TESTS */
 describe('Geo', () => {
   require('./point');
+  require('./path');
 });

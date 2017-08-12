@@ -8,7 +8,7 @@ Takes point with several possible formats:
   * `lat` and `lng` properties
   * `lat` and `long` properties
   * `latitude` and `longitude` properties
-* Browser Geolocation Object
+* Browser Geolocation Object (with a `Position` constructor)
 * Array
   * Normally ordered, `latitude, longitude`
   * Inverted, `longitude, latitude`

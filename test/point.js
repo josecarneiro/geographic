@@ -2,6 +2,7 @@
 
 /* DEPENDENCIES */
 const expect = require('chai').expect;
+const { version } = require('./../package');
 const Point = require('./../point');
 
 /* EASY ID TESTS */
@@ -81,17 +82,17 @@ describe('Point', () => {
   });
 
   it('should stringify to JSON should only output coordinates', () => {
-    let point = new Point({ latitude: -30, longitude: 60 });
-    let parsed = JSON.parse(JSON.stringify(point));
-    expect(parsed).to.have.property('latitude', -30);
-    expect(parsed).to.have.property('longitude', 60);
+    let point = JSON.parse(JSON.stringify(new Point([ -30, 60 ])));
+    expect(point).to.have.property('latitude', -30);
+    expect(point).to.have.property('longitude', 60);
   });
 
   /* GET UTIL VERSION */
 
   it('should get correct package version', () => {
-    let version = Point.version();
-    expect(version).to.equal(require('./../package').version);
+    let point = new Point([ 10, 10 ]);
+    expect(point.version).to.equal(version);
+    expect(Point.version()).to.equal(version);
   });
 
   it('object should have "Point" name', () => {

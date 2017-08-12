@@ -1,6 +1,6 @@
 'use strict';
 
-const version = require('./../package').version;
+const { version } = require('./../package');
 
 module.exports = class Point {
   constructor (coordinates, options) {
@@ -33,7 +33,6 @@ module.exports = class Point {
     }
     // ARRAY WITH LONGITUDE AND LATITUDE
     else if (coordinates instanceof Array && coordinates.length === 2) {
-      // if (coordinates)
       if (this._options.inverted) {
         this._coordinates = {
           latitude: coordinates[1],
