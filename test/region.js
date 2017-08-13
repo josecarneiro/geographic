@@ -10,13 +10,14 @@ describe('Region', () => {
 
   /* POINT CONSTRUCTORS */
 
-  // it('should generate Path from two objects', () => {
-  //   let path = new Path([ [ -5, 25 ], [ -1, 10 ] ]);
-  //   expect(path.start.coordinates).to.have.property('latitude', -5);
-  //   expect(path.start.coordinates).to.have.property('longitude', 25);
-  //   expect(path.end.coordinates).to.have.property('latitude', -1);
-  //   expect(path.end.coordinates).to.have.property('longitude', 10);
-  // });
+  it('should generate Region from path object', () => {
+    let region = new Region([ [ -5, 25 ], [ -1, 10 ] ]);
+    console.log(region);
+    // expect(path.start.coordinates).to.have.property('latitude', -5);
+    // expect(path.start.coordinates).to.have.property('longitude', 25);
+    // expect(path.end.coordinates).to.have.property('latitude', -1);
+    // expect(path.end.coordinates).to.have.property('longitude', 10);
+  });
 
   // it('should generate Path from other path', () => {
   //   let path = new Path(new Path([ [ -5, 25 ], [ -1, 10 ] ]));
@@ -76,17 +77,17 @@ describe('Region', () => {
   //   .to.throw(Error, 'Coordinates are invalid.');
   // });
 
-  it('should stringify to JSON should only output coordinates', () => {
-    let region = new Region([ [ 0, 0 ], [ 10, 10 ] ]);
-    console.log(region.toJSON());
-    let regions = new Region([ [ [ 0, 0 ], [ 10, 10 ] ] ]);
-    console.log(regions.toJSON());
-    // let path = JSON.parse(JSON.stringify(new Region([ [ 0, 10 ], [ 20, 30 ] ])));
-    // expect(path[0]).to.have.property('latitude', 0);
-    // expect(path[0]).to.have.property('longitude', 10);
-    // expect(path[1]).to.have.property('latitude', 20);
-    // expect(path[1]).to.have.property('longitude', 30);
-  });
+  // it('should stringify to JSON should only output coordinates', () => {
+  //   let region = new Region([ [ 0, 0 ], [ 10, 10 ] ]);
+  //   // console.log(region.toJSON());
+  //   let regions = new Region([ [ [ 0, 0 ], [ 10, 10 ] ] ]);
+  //   // console.log(regions.toJSON());
+  //   // let path = JSON.parse(JSON.stringify(new Region([ [ 0, 10 ], [ 20, 30 ] ])));
+  //   // expect(path[0]).to.have.property('latitude', 0);
+  //   // expect(path[0]).to.have.property('longitude', 10);
+  //   // expect(path[1]).to.have.property('latitude', 20);
+  //   // expect(path[1]).to.have.property('longitude', 30);
+  // });
 
   // /* GET UTIL VERSION */
 

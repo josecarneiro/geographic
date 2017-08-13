@@ -137,6 +137,18 @@ module.exports = class Point {
     return this._coordinates;
   }
 
+  toGeoJSON (properties) {
+    let object = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: this.arrayInverted
+      }
+    };
+    if (properties !== undefined) object.properties = properties;
+    return object;
+  }
+
   static version () {
     return version;
   }

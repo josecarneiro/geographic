@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/index.js",
+    "test:dev": "nodemon --exec \"mocha ./test/index.js || true\"",
     "lint": "eslint --ext .js ."
   },
   "author": {

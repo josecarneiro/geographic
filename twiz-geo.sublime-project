@@ -5,9 +5,10 @@
 			"file_exclude_patterns":
 			[
 				// "README.md",
-				// ".eslintrc.js",
-				// ".gitignore",
-				"yarn.lock"
+				".eslintrc.js",
+				".gitignore",
+				"yarn.lock",
+				".travis.yml"
 			],
 			"folder_exclude_patterns":
 			[
