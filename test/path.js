@@ -3,7 +3,6 @@
 /* DEPENDENCIES */
 const expect = require('chai').expect;
 const { version } = require('./../package');
-const Point = require('./../point');
 const Path = require('./../path');
 
 /* EASY ID TESTS */
@@ -19,14 +18,46 @@ describe('Path', () => {
     expect(path.end.coordinates).to.have.property('longitude', 10);
   });
 
-  it('should get distance between two points', () => {
-    let path = new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ] ]);
-    expect(path.distance).to.equal(171609);
+  it('should generate Path from other path', () => {
+    let path = new Path(new Path([ [ -5, 25 ], [ -1, 10 ] ]));
+    expect(path.start.coordinates).to.have.property('latitude', -5);
+    expect(path.start.coordinates).to.have.property('longitude', 25);
+    expect(path.end.coordinates).to.have.property('latitude', -1);
+    expect(path.end.coordinates).to.have.property('longitude', 10);
+  });
+
+  it('should get distance between start and finish', () => {
+    expect(new Path([ [ 38.7, -9.13 ], [ 24.12, -33.45 ], [ 38.8, -7.16 ] ]).distance)
+    .to.equal(new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ] ]).distance);
+    // DISTANCE BETWEEN TWO POINTS IN DIFFERENT EAST-WEST HEMISPHERES
+    expect(new Path([ [ 0, -179.5 ], [ 0, 179.5 ] ]).distance)
+    .to.equal(new Path([ [ 0, -178.5 ], [ 0, -179.5 ] ]).distance);
+  });
+
+  it('should get length of path', () => {
+    let path = new Path([ [ 38.7, -9.13 ], [ 38.7, -9.13 ] ]);
+    expect(path.length).to.equal(path.distance);
   });
 
   it('should get length of multiple point path', () => {
     let path = new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ], [ 38.7, -9.13 ] ]);
-    expect(path.distance).to.equal(171609 * 2);
+    expect(path.length).to.equal(171609 * 2);
+  });
+
+  it('should get direction of path', () => {
+    expect(new Path([ [ 0, 0 ], [ 0, 0 ] ]).direction).to.equal(0);
+    expect(new Path([ [ 0, 0 ], [ 10, 0 ] ]).direction).to.equal(0);
+    expect(new Path([ [ 0, 0 ], [ 0, 10 ] ]).direction).to.equal(0.25);
+    expect(new Path([ [ 0, 0 ], [ -10, 0 ] ]).direction).to.equal(0.5);
+    expect(new Path([ [ 0, 0 ], [ 0, -10 ] ]).direction).to.equal(0.75);
+
+  });
+
+  it('should allow adding points after initialization', () => {
+    let path = new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ] ]);
+    path.add([ 25, 36 ]);
+    path.add([ 56, 84 ]);
+    expect(path.count).to.equal(4);
   });
 
   // /* THROWN ERRORS */
@@ -44,14 +75,6 @@ describe('Path', () => {
     expect(() => new Path([ [ 105, 21 ], [ 10, 20 ] ]))
     .to.throw(Error, 'Coordinates are invalid.');
   });
-
-  // /* PRECISION */
-
-  // it('should generate set coordinates to precision', () => {
-  //   let point = new Point({ latitude: -5.123456, longitude: 25.654321 }, { precision: 3 });
-  //   expect(point.coordinates).to.have.property('latitude', -5.123);
-  //   expect(point.coordinates).to.have.property('longitude', 25.654);
-  // });
 
   it('should stringify to JSON should only output coordinates', () => {
     let path = JSON.parse(JSON.stringify(new Path([ [ 0, 10 ], [ 20, 30 ] ])));

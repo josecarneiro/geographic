@@ -8,7 +8,6 @@ const Point = require('./../point');
 
 module.exports = class Path {
   constructor (points, options) {
-    this.name = 'Path';
     this.version = version;
     this._options = {};
     this._defaults = {};
@@ -26,7 +25,11 @@ module.exports = class Path {
   }
 
   set points (points) {
-    if (!points || !(points instanceof Array)) {
+    if (!points) {
+      throw new Error('Wrong arguments.');
+    } else if (points instanceof this.constructor) {
+      this.points = points.points;
+    } else if (!(points instanceof Array)) {
       throw new Error('Wrong arguments.');
     } else if (points.length < 2) {
       throw new Error('Path requires 2 or more points.');
@@ -50,13 +53,29 @@ module.exports = class Path {
   }
 
   get distance () {
+    return geo.getDistance(this.start.coordinates, this.end.coordinates);
+  }
+
+  get length () {
     let distance = 0;
     for (let index = 0; index < this.points.length; index++) {
       if (index) {
-        distance += geo.getDistance(this.points[index - 1]._coordinates, this.points[index]._coordinates);
+        distance += geo.getDistance(this.points[index - 1].coordinates, this.points[index].coordinates);
       } 
     }
     return distance;
+  }
+
+  get direction () {
+    return (geo.getBearing(this.start.coordinates, this.end.coordinates) % 360) / 360;
+  }
+
+  get count () {
+    return this._points.length;
+  }
+
+  get name () {
+    return this.constructor.name;
   }
 
   toJSON () {

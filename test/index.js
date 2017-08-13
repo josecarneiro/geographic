@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Library Tests', () => {
+describe('Geo Library Tests', () => {
   /* BEFORE AND AFTER TEST HOOKS */
   before(done => {
     done();
@@ -11,5 +11,7 @@ describe('Library Tests', () => {
   });
 
   /* REQUIRE TESTS */
-  require('./geo');
+  require('./point');
+  require('./path');
+  require('./region');
 });

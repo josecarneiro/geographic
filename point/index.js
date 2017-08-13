@@ -4,7 +4,6 @@ const { version } = require('./../package');
 
 module.exports = class Point {
   constructor (coordinates, options) {
-    this.name = 'Point';
     this.version = version;
     this._coordinates = {};
     this._options = {};
@@ -30,6 +29,10 @@ module.exports = class Point {
     /* eslint brace-style: 0 */
     if (!coordinates) {
       throw new Error('Wrong arguments.');
+    }
+    // OTHER GEO POINT OBJECT
+    else if (coordinates && coordinates.constructor.name === 'Point') {
+      this.coordinates = coordinates.coordinates;
     }
     // ARRAY WITH LONGITUDE AND LATITUDE
     else if (coordinates instanceof Array && coordinates.length === 2) {
@@ -68,10 +71,6 @@ module.exports = class Point {
         latitude: coordinates.latitude,
         longitude: coordinates.longitude
       };
-    }
-    // OTHER GEO POINT OBJECT
-    else if (coordinates && coordinates.name === 'Point') {
-      this._coordinates = coordinates.coordinates;
     }
     // IF NONE OF THE CONDITIONS MATCH,
     // THROW ERROR
@@ -128,6 +127,10 @@ module.exports = class Point {
 
   get arrayInverted () {
     return [ this._coordinates.longitude, this._coordinates.latitude ];
+  }
+
+  get name () {
+    return this.constructor.name;
   }
 
   toJSON () {
