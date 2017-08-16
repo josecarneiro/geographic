@@ -10,7 +10,9 @@ module.exports = class Point {
     this._defaults = {
       inverted: false,
       format: 'normal',
-      precision: null
+      // A precision of 6 decimal places is accurate
+      // up to 0.11m.
+      precision: 6
     };
     if (typeof options === 'boolean') options = { inverted: options };
     this.options = options;
