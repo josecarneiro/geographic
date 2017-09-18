@@ -79,12 +79,6 @@ module.exports = class Point {
     else {
       throw new Error('Wrong arguments.');
     }
-    // OPTIONS PRECISION
-    if (typeof this._options.precision === 'number') {
-      Object.keys(this._coordinates).map(key => {
-        this._coordinates[key] = this._coordinates[key].toFixed(this._options.precision);
-      });
-    }
     // ENSURE COORDINATES ARE NUMERIC
     if (typeof this._coordinates.latitude === 'string') {
       this._coordinates.latitude = parseFloat(this._coordinates.latitude);
@@ -102,6 +96,12 @@ module.exports = class Point {
       this._coordinates.longitude < -180
     ) {
       throw new Error('Coordinates are invalid.');
+    }
+    // OPTIONS PRECISION
+    if (typeof this._options.precision === 'number') {
+      Object.keys(this._coordinates).map(key => {
+        this._coordinates[key] = parseFloat(this._coordinates[key].toFixed(this._options.precision));
+      });
     }
   }
 
