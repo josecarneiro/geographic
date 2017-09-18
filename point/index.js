@@ -100,6 +100,9 @@ module.exports = class Point {
     // OPTIONS PRECISION
     if (typeof this._options.precision === 'number') {
       Object.keys(this._coordinates).map(key => {
+        // let value = this._coordinates[key];
+        // let precision = this._options.precision;
+        // this._coordinates[key] = (value * 10 ** precision) / (10 ** precision);
         this._coordinates[key] = parseFloat(this._coordinates[key].toFixed(this._options.precision));
       });
     }
