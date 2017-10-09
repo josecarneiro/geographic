@@ -1,6 +1,6 @@
 {
   "name": "@twiz/geo",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Geo javascript utilities",
   "main": "index.js",
   "scripts": {
