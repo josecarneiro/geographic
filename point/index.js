@@ -1,34 +1,25 @@
 'use strict';
 
-const { version } = require('./../package');
+const { Base } = require('./../common');
 
-module.exports = class Point {
+module.exports = class Point extends Base {
   constructor (coordinates, options) {
-    this.version = version;
-    this._coordinates = {};
-    this._options = {};
-    this._defaults = {
+    const defaults = {
       inverted: false,
       format: 'normal',
-      // A precision of 6 decimal places is accurate
-      // up to 0.11m.
+      // 0.11m of precision.
       precision: 6
     };
     if (typeof options === 'boolean') options = { inverted: options };
-    this.options = options;
+    super({
+      defaults,
+      options
+    });
+    this._coordinates = {};
     this.coordinates = coordinates;
   }
 
-  set options (options) {
-    this._options = Object.assign(this._defaults, options);
-  }
-
-  get options () {
-    return this._options;
-  }
-
   set coordinates (coordinates) {
-    /* eslint brace-style: 0 */
     if (!coordinates) {
       throw new Error('Wrong arguments.');
     }
@@ -134,10 +125,6 @@ module.exports = class Point {
     return [ this._coordinates.longitude, this._coordinates.latitude ];
   }
 
-  get name () {
-    return this.constructor.name;
-  }
-
   toJSON () {
     return this._coordinates;
   }
@@ -152,9 +139,5 @@ module.exports = class Point {
     };
     if (properties !== undefined) object.properties = properties;
     return object;
-  }
-
-  static version () {
-    return version;
   }
 };

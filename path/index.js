@@ -1,27 +1,18 @@
 'use strict';
 
-const { version } = require('./../package');
+const { Base } = require('./../common');
 
 const geo = require('geolib');
 
 const Point = require('./../point');
 
-module.exports = class Path {
+module.exports = class Path extends Base {
   constructor (points, options) {
-    this.version = version;
-    this._options = {};
-    this._defaults = {};
+    super({
+      options
+    });
     this._points = [];
-    this.options = options;
     this.points = points;
-  }
-
-  set options (options) {
-    this._options = Object.assign(this._defaults, options || {});
-  }
-
-  get options () {
-    return this._options;
   }
 
   set points (points) {
@@ -38,6 +29,10 @@ module.exports = class Path {
         this._points.push(new Point(point));
       }
     }
+  }
+
+  add (point) {
+    this._points.push(new Point(point));
   }
 
   get points () {
@@ -74,23 +69,11 @@ module.exports = class Path {
     return this._points.length;
   }
 
-  get name () {
-    return this.constructor.name;
-  }
-
   toJSON () {
     let path = [];
     for (let point of this._points) {
       path.push(point.toJSON());
     }
     return path;
-  }
-
-  add (point) {
-    this._points.push(new Point(point));
-  }
-
-  static version () {
-    return version;
   }
 };

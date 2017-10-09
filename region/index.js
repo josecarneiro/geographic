@@ -1,25 +1,18 @@
 'use strict';
 
-const { version } = require('./../package');
+const { Base } = require('./../common');
+
 // const geo = require('geolib');
+
 const Path = require('./../path');
 
-module.exports = class Region {
+module.exports = class Region extends Base {
   constructor (paths, options) {
-    this.version = version;
-    this._options = {};
-    this._defaults = {};
+    super({
+      options
+    });
     this._paths = [];
-    this.options = options;
     this.paths = paths;
-  }
-
-  set options (options) {
-    this._options = Object.assign(this._defaults, options || {});
-  }
-
-  get options () {
-    return this._options;
   }
 
   set paths (paths) {
@@ -81,7 +74,7 @@ module.exports = class Region {
   get name () {
     return this.constructor.name;
   }
-
+  
   toJSON () {
     let paths = [];
     for (let path of this._paths) {
@@ -92,9 +85,5 @@ module.exports = class Region {
 
   add (path) {
     this._paths.push(new Path(path));
-  }
-
-  static version () {
-    return version;
   }
 };
