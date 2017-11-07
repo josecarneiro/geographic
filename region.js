@@ -1,10 +1,10 @@
 'use strict';
 
-const { Base } = require('./../common');
+const { Base } = require('./common');
 
 // const geo = require('geolib');
 
-const Path = require('./../path');
+const Path = require('./path');
 
 module.exports = class Region extends Base {
   constructor (paths, options) {
@@ -33,13 +33,15 @@ module.exports = class Region extends Base {
         this._paths.push(new Path(paths));
       }
     } else {
-      this._paths = new Path(paths);
+      this._paths = [ new Path(paths) ];
     }
   }
 
   get paths () {
     return this._paths;
   }
+
+  // get area () {}
 
   // get start () {
   //   return this._points[0];
@@ -61,10 +63,6 @@ module.exports = class Region extends Base {
   //     } 
   //   }
   //   return distance;
-  // }
-
-  // get direction () {
-  //   return (geo.getBearing(this.start.coordinates, this.end.coordinates) % 360) / 360;
   // }
 
   // get count () {

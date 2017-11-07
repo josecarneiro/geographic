@@ -5,18 +5,28 @@ const expect = require('chai').expect;
 const { version } = require('./../package');
 const Region = require('./../region');
 
-/* EASY ID TESTS */
+/* REGION TESTS */
 describe('Region', () => {
 
-  /* POINT CONSTRUCTORS */
+  /* REGION CONSTRUCTORS */
 
   it('should generate Region from path object', () => {
-    let region = new Region([ [ -5, 25 ], [ -1, 10 ] ]);
-    console.log(region);
-    // expect(path.start.coordinates).to.have.property('latitude', -5);
-    // expect(path.start.coordinates).to.have.property('longitude', 25);
-    // expect(path.end.coordinates).to.have.property('latitude', -1);
-    // expect(path.end.coordinates).to.have.property('longitude', 10);
+    let region = new Region([ [ -5, 25 ], [ -1, 10 ], [ -3, 5 ] ]);
+    expect(region.paths).to.be.an('array');
+    expect(region.paths).to.have.length(1);
+    expect(region.paths[0].toJSON()).to.have.length(3);
+  });
+
+  it('toJSON', () => {
+    let region = new Region([
+      { latitude: 39, longitude: -9 },
+      { latitude: 38, longitude: -9 },
+      { latitude: 38, longitude: -8 },
+      { latitude: 39, longitude: -8 }
+    ]).toJSON();
+    expect(region).to.be.an('array');
+    expect(region).to.have.length(1);
+    expect(region[0]).to.have.length(4);
   });
 
   // it('should generate Path from other path', () => {

@@ -4,9 +4,9 @@
 		{
 			"file_exclude_patterns":
 			[
-				"README.md",
+				// "README.md",
 				".eslintrc.js",
-				// ".gitignore",
+				".gitignore",
 				"yarn.lock",
 				".travis.yml",
 				"package-lock.json"

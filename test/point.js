@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const { version } = require('./../package');
 const Point = require('./../point');
 
-/* EASY ID TESTS */
+/* POINT TESTS */
 describe('Point', () => {
 
   /* POINT CONSTRUCTORS */

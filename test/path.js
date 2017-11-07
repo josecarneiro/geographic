@@ -5,10 +5,10 @@ const expect = require('chai').expect;
 const { version } = require('./../package');
 const Path = require('./../path');
 
-/* EASY ID TESTS */
+/* PATH TESTS */
 describe('Path', () => {
 
-  /* POINT CONSTRUCTORS */
+  /* PATH CONSTRUCTORS */
 
   it('should generate Path from two objects', () => {
     let path = new Path([ [ -5, 25 ], [ -1, 10 ] ]);
@@ -82,6 +82,11 @@ describe('Path', () => {
     expect(path[0]).to.have.property('longitude', 10);
     expect(path[1]).to.have.property('latitude', 20);
     expect(path[1]).to.have.property('longitude', 30);
+  });
+
+  it('GeoJSON', () => {
+    let path = new Path([ [ 0, 10 ], [ 20, 30 ] ]).toGeoJSON();
+    // console.log(require('util').inspect(path, 2, { color: true }));
   });
 
   // /* GET UTIL VERSION */

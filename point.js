@@ -1,6 +1,6 @@
 'use strict';
 
-const { Base } = require('./../common');
+const { Base } = require('./common');
 
 module.exports = class Point extends Base {
   constructor (coordinates, options) {
@@ -70,6 +70,7 @@ module.exports = class Point extends Base {
     else {
       throw new Error('Wrong arguments.');
     }
+
     // ENSURE COORDINATES ARE NUMERIC
     if (typeof this._coordinates.latitude === 'string') {
       this._coordinates.latitude = parseFloat(this._coordinates.latitude);
@@ -77,6 +78,7 @@ module.exports = class Point extends Base {
     if (typeof this._coordinates.longitude === 'string') {
       this._coordinates.longitude = parseFloat(this._coordinates.longitude);
     }
+
     // VERIFY COORDINATES ARE VALID
     if (
       typeof this._coordinates.latitude !== 'number' ||
@@ -88,12 +90,10 @@ module.exports = class Point extends Base {
     ) {
       throw new Error('Coordinates are invalid.');
     }
+    
     // OPTIONS PRECISION
     if (typeof this._options.precision === 'number') {
       Object.keys(this._coordinates).map(key => {
-        // let value = this._coordinates[key];
-        // let precision = this._options.precision;
-        // this._coordinates[key] = (value * 10 ** precision) / (10 ** precision);
         this._coordinates[key] = parseFloat(this._coordinates[key].toFixed(this._options.precision));
       });
     }

@@ -1,10 +1,10 @@
 'use strict';
 
-const { Base } = require('./../common');
+const { Base } = require('./common');
 
 const geo = require('geolib');
 
-const Point = require('./../point');
+const Point = require('./point');
 
 module.exports = class Path extends Base {
   constructor (points, options) {
@@ -75,5 +75,17 @@ module.exports = class Path extends Base {
       path.push(point.toJSON());
     }
     return path;
+  }
+
+  toGeoJSON (properties) {
+    let object = {
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        coordinates: this.toJSON()
+      }
+    };
+    if (properties !== undefined) object.properties = properties;
+    return object;
   }
 };
