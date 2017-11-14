@@ -2,7 +2,7 @@
 
 const { Base } = require('./common');
 
-const geo = require('geolib');
+const geo = require('./utilities/geolib');
 
 const Point = require('./point');
 

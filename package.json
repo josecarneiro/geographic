@@ -1,6 +1,6 @@
 {
   "name": "@twiz/geo",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Geo javascript utilities",
   "main": "index.js",
   "scripts": {
@@ -20,13 +20,10 @@
   "devDependencies": {
     "@twiz/eslint-config-twiz": "^0.1.6",
     "chai": "^4.1.2",
-    "eslint": "^4.10.0",
+    "eslint": "^4.11.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1"
-  },
-  "dependencies": {
-    "geolib": "^2.0.24"
   }
 }
