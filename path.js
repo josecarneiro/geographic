@@ -26,13 +26,13 @@ module.exports = class Path extends Base {
       throw new Error('Path requires 2 or more points.');
     } else {
       for (let point of points) {
-        this._points.push(new Point(point));
+        this._points.push(new Point(point, this._options));
       }
     }
   }
 
   add (point) {
-    this._points.push(new Point(point));
+    this._points.push(new Point(point, this._options));
   }
 
   get points () {

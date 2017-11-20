@@ -27,13 +27,13 @@ module.exports = class Region extends Base {
     } else if (paths[0] instanceof Array) {
       if (paths[0][0] instanceof Array) {
         for (let path of paths) {
-          this._paths.push(new Path(path));
+          this._paths.push(new Path(path, this._options));
         }
       } else {
-        this._paths.push(new Path(paths));
+        this._paths.push(new Path(paths, this._options));
       }
     } else {
-      this._paths = [ new Path(paths) ];
+      this._paths = [ new Path(paths, this._options) ];
     }
   }
 
@@ -82,6 +82,6 @@ module.exports = class Region extends Base {
   }
 
   add (path) {
-    this._paths.push(new Path(path));
+    this._paths.push(new Path(path, this._options));
   }
 };

@@ -15,6 +15,16 @@ describe('Region', () => {
     expect(region.paths).to.be.an('array');
     expect(region.paths).to.have.length(1);
     expect(region.paths[0].toJSON()).to.have.length(3);
+    expect(region.toJSON()[0]).to.have.length(3);
+  });
+
+  it('should generate Region from inverted path object', () => {
+    let region = new Region([ [ -9, 38 ], [ -10, 39 ], [ -9, 37 ] ], { inverted: true });
+    expect(region.paths).to.be.an('array');
+    expect(region.paths).to.have.length(1);
+    let path = region.toJSON()[0];
+    expect(path).to.have.length(3);
+    expect(path[0]).to.have.property('latitude', 38);
   });
 
   it('toJSON', () => {
