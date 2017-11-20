@@ -27,6 +27,15 @@ describe('Region', () => {
     expect(path[0]).to.have.property('latitude', 38);
   });
 
+  it('should generate Region from Region', () => {
+    let region = new Region([ [ -5, 25 ], [ -1, 10 ], [ -3, 5 ] ]);
+    let newRegion = new Region(region);
+    expect(newRegion.paths).to.be.an('array');
+    expect(newRegion.paths).to.have.length(1);
+    expect(newRegion.paths[0].toJSON()).to.have.length(3);
+    expect(newRegion.toJSON()[0]).to.have.length(3);
+  });
+
   it('toJSON', () => {
     let region = new Region([
       { latitude: 39, longitude: -9 },

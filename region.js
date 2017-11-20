@@ -19,7 +19,7 @@ module.exports = class Region extends Base {
     if (!paths) {
       throw new Error('Wrong arguments.');
     } else if (paths instanceof this.constructor) {
-      this.paths = paths.paths;
+      this._paths = paths.paths;
     } else if (paths instanceof Path) {
       this._paths = paths;
     } else if (!(paths instanceof Array)) {
