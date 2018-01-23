@@ -1,4 +1,6 @@
-# Twiz Geo
+# Geographic
+
+`Geographic` is a collection of abstractions to ease the pain of working with geographic features in JavaScript.
 
 ### Point Class
 
@@ -19,8 +21,10 @@ Takes point with several possible formats:
 It includes several useful getters:
 
 * `coordinates`: Outputs an object with coordinates in the `{ latitude: ..., longitude: ... }` format.
+* `short`: Returns an object with the format `{ lat: ..., long: ... }`
+* `shortest`: Returns the shortest coordinates format `{ lat: ..., lng: ... }`
 * `array`: An array of coordinates in the format `[ [latitude], [longitude] ]`.
-* `arrayInverted`: An array of coordinates in the format `[ [longitude], [latitude] ]`.`
+* `arrayInverted`: An array of coordinates in the format `[ [longitude], [latitude] ]`.
 
 ### Path Class
 
