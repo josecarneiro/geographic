@@ -1,4 +1,6 @@
-# Twiz Geo
+# Geographic
+
+`Geographic` is a collection of abstractions to ease the pain of working with geographic features in JavaScript.
 
 ### Point Class
 

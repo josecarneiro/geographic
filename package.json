@@ -1,22 +1,26 @@
 {
-  "name": "@twiz/geo",
-  "version": "0.1.10",
-  "description": "Geo javascript utilities",
+  "name": "geographic",
+  "version": "0.1.0",
+  "description": "Geographic javascript utilities",
+  "author": {
+     "name": "José Carneiro",
+     "email": "contact@josecarnei.ro",
+     "url": "https://josecarnei.ro"
+   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geographic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/josecarneiro/geographic/issues"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/index.js",
     "test:dev": "nodemon --exec \"mocha ./test/index.js || true\"",
     "lint": "eslint --ext .js ."
   },
-  "author": {
-    "name": "José Carneiro",
-    "email": "jose@light.pt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/twizco/geo.git"
-  },
-  "license": "MIT",
   "devDependencies": {
     "@twiz/eslint-config-twiz": "^0.1.6",
     "chai": "^4.1.2",
