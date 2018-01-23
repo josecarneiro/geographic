@@ -103,17 +103,17 @@ module.exports = class Point extends Base {
     return this._coordinates;
   }
 
-  get shortest () {
-    return {
-      lat: this._coordinates.latitude,
-      lng: this._coordinates.longitude
-    };
-  }
-
   get short () {
     return {
       lat: this._coordinates.latitude,
       long: this._coordinates.longitude
+    };
+  }
+
+  get shortest () {
+    return {
+      lat: this._coordinates.latitude,
+      lng: this._coordinates.longitude
     };
   }
 
