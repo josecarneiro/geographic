@@ -1,6 +1,6 @@
 'use strict';
 
-const { Base } = require('./common');
+const { Base } = require('./lib/common');
 
 module.exports = class Point extends Base {
   constructor (coordinates, options) {

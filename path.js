@@ -1,8 +1,7 @@
 'use strict';
 
-const { Base } = require('./common');
-
-const geo = require('./utilities/geolib');
+const { Base } = require('./lib/common');
+const geo = require('./lib/geolib');
 
 const Point = require('./point');
 
