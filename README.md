@@ -22,6 +22,12 @@ npm install geographic --save
 
 ## Usage
 
+``` bash js
+// Insert usage examples here.
+```
+
+## Reference
+
 ### Point Class
 
 Takes point with several possible formats:
