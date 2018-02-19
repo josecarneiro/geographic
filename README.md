@@ -64,7 +64,7 @@ To run tests on the development mode (refreshing after each file save) run the c
 
 ## Authorship
 
-José Carneiro | [josecarnei.ro](https://josecarnei.ro) | contact@josecarnei.ro
+[José Carneiro](https://josecarnei.ro). Email me at contact@josecarnei.ro.
 
 ## License
 
