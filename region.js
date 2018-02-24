@@ -60,7 +60,7 @@ module.exports = class Region extends Base {
   //   for (let index = 0; index < this.points.length; index++) {
   //     if (index) {
   //       distance += geo.getDistance(this.points[index - 1].coordinates, this.points[index].coordinates);
-  //     } 
+  //     }
   //   }
   //   return distance;
   // }
@@ -72,7 +72,7 @@ module.exports = class Region extends Base {
   get name () {
     return this.constructor.name;
   }
-  
+
   toJSON () {
     let paths = [];
     for (let path of this._paths) {

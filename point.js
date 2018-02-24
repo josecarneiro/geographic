@@ -68,7 +68,7 @@ module.exports = class Point extends Base {
     }
     // IF GEOHASH
     else if (typeof coordinates === 'string') {
-      let [ latitude, longitude ] = geoHash.decode(coordinates);
+      let [ latitude, longitude ] = geoHash.decode(coordinates);
       this.coordinates = [
         latitude,
         longitude
@@ -99,7 +99,7 @@ module.exports = class Point extends Base {
     ) {
       throw new Error('Coordinates are invalid.');
     }
-    
+
     // OPTIONS PRECISION
     if (typeof this._options.precision === 'number') {
       Object.keys(this._coordinates).map(key => {

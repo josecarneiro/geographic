@@ -60,7 +60,7 @@ describe('Path', () => {
   });
 
   // /* THROWN ERRORS */
-  
+
   it('should throw error from wrong arguments', () => {
     expect(() => new Path())
     .to.throw(Error, 'Wrong arguments.');
@@ -69,7 +69,7 @@ describe('Path', () => {
     expect(() => new Path([ [ 20, 30 ] ]))
     .to.throw(Error, 'Path requires 2 or more points.');
   });
-  
+
   it('should throw error from invalid coordinates', () => {
     expect(() => new Path([ [ 105, 21 ], [ 10, 20 ] ]))
     .to.throw(Error, 'Coordinates are invalid.');
