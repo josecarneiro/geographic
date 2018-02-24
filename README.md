@@ -71,9 +71,9 @@ Developed by [José Carneiro](https://josecarnei.ro). Email me at contact@joseca
 `geographic` is licensed under the MIT License, meaning it's free to be used for any purpose.
 
 <!-- Markdown link & img dfn's -->
-[npm-version]: https://img.shields.io/npm/v/@twiz/geo.svg
-[npm-license]: https://img.shields.io/npm/l/@twiz/geo.svg
-[npm-url]: https://npmjs.org/package/@twiz/geo
+[npm-version]: https://img.shields.io/npm/v/geographic.svg
+[npm-license]: https://img.shields.io/npm/l/geographic.svg
+[npm-url]: https://npmjs.org/package/geographic
 <!-- [npm-downloads]: https://img.shields.io/npm/dm/@twiz/geo.svg -->
 [travis-image]: https://img.shields.io/travis/josecarneiro/geographic.svg
 [travis-url]: https://travis-ci.org/josecarneiro/geographic
