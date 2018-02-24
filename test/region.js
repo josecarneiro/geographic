@@ -6,6 +6,7 @@ const { version } = require('./../package');
 const Region = require('./../region');
 
 /* REGION TESTS */
+
 describe('Region', () => {
 
   /* REGION CONSTRUCTORS */
@@ -91,7 +92,7 @@ describe('Region', () => {
   // });
 
   // // /* THROWN ERRORS */
-  
+
   // it('should throw error from wrong arguments', () => {
   //   expect(() => new Path())
   //   .to.throw(Error, 'Wrong arguments.');
@@ -100,7 +101,7 @@ describe('Region', () => {
   //   expect(() => new Path([ [ 20, 30 ] ]))
   //   .to.throw(Error, 'Path requires 2 or more points.');
   // });
-  
+
   // it('should throw error from invalid coordinates', () => {
   //   expect(() => new Path([ [ 105, 21 ], [ 10, 20 ] ]))
   //   .to.throw(Error, 'Coordinates are invalid.');
@@ -129,4 +130,18 @@ describe('Region', () => {
   // it('object should have "Region" name', () => {
   //   expect(new Path([ [ 0, 10 ], [ 20, 30 ] ]).name).to.equal('Path');
   // });
+  /* UTIL INFO */
+
+  it('should get correct package version', () => {
+    const region = new Region([ [ -5, 25 ], [ -1, 10 ], [ -3, 5 ] ]);
+    expect(region.version).to.equal(version);
+    expect(Region.version()).to.equal(version);
+  });
+
+  it('should be instance of "Region"', () => {
+    const region = new Region([ [ -5, 25 ], [ -1, 10 ], [ -3, 5 ] ]);
+    expect(region.name).to.equal('Region');
+    expect(region.constructor.name).to.equal('Region');
+    expect(region).to.be.instanceof(Region);
+  });
 });

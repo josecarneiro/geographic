@@ -50,7 +50,6 @@ describe('Path', () => {
     expect(new Path([ [ 0, 0 ], [ 0, 10 ] ]).direction).to.equal(0.25);
     expect(new Path([ [ 0, 0 ], [ -10, 0 ] ]).direction).to.equal(0.5);
     expect(new Path([ [ 0, 0 ], [ 0, -10 ] ]).direction).to.equal(0.75);
-
   });
 
   it('should allow adding points after initialization', () => {
@@ -61,7 +60,7 @@ describe('Path', () => {
   });
 
   // /* THROWN ERRORS */
-  
+
   it('should throw error from wrong arguments', () => {
     expect(() => new Path())
     .to.throw(Error, 'Wrong arguments.');
@@ -70,13 +69,13 @@ describe('Path', () => {
     expect(() => new Path([ [ 20, 30 ] ]))
     .to.throw(Error, 'Path requires 2 or more points.');
   });
-  
+
   it('should throw error from invalid coordinates', () => {
     expect(() => new Path([ [ 105, 21 ], [ 10, 20 ] ]))
     .to.throw(Error, 'Coordinates are invalid.');
   });
 
-  it('should stringify to JSON should only output coordinates', () => {
+  it('should only output coordinates when stringified to JSON', () => {
     let path = JSON.parse(JSON.stringify(new Path([ [ 0, 10 ], [ 20, 30 ] ])));
     expect(path[0]).to.have.property('latitude', 0);
     expect(path[0]).to.have.property('longitude', 10);
@@ -84,7 +83,8 @@ describe('Path', () => {
     expect(path[1]).to.have.property('longitude', 30);
   });
 
-  it('GeoJSON', () => {
+  it('should output Path as GeoJSON feature', () => {
+    /* eslint-disable no-unused-vars */
     let path = new Path([ [ 0, 10 ], [ 20, 30 ] ]).toGeoJSON();
     // console.log(require('util').inspect(path, 2, { color: true }));
   });
@@ -97,7 +97,10 @@ describe('Path', () => {
     expect(Path.version()).to.equal(version);
   });
 
-  it('object should have "Path" name', () => {
-    expect(new Path([ [ 0, 10 ], [ 20, 30 ] ]).name).to.equal('Path');
+  it('should be instance of "Path"', () => {
+    const path = new Path([ [ 0, 10 ], [ 20, 30 ] ]);
+    expect(path.name).to.equal('Path');
+    expect(path.constructor.name).to.equal('Path');
+    expect(path).to.be.instanceof(Path);
   });
 });

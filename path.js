@@ -1,8 +1,7 @@
 'use strict';
 
-const { Base } = require('./common');
-
-const geo = require('./utilities/geolib');
+const { Base } = require('./lib/common');
+const geo = require('./lib/geolib');
 
 const Point = require('./point');
 
@@ -56,13 +55,13 @@ module.exports = class Path extends Base {
     for (let index = 0; index < this.points.length; index++) {
       if (index) {
         distance += geo.getDistance(this.points[index - 1].coordinates, this.points[index].coordinates);
-      } 
+      }
     }
     return distance;
   }
 
   get direction () {
-    return (geo.getBearing(this.start.coordinates, this.end.coordinates) % 360) / 360;
+    return geo.getBearing(this.start.coordinates, this.end.coordinates) % 360 / 360;
   }
 
   get count () {

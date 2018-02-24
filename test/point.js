@@ -46,6 +46,12 @@ describe('Point', () => {
     expect(point.coordinates).to.have.property('longitude', 128.3824);
   });
 
+  it('should generate Point from geohash.', () => {
+    let point = new Point('u4xsu6jhrms7');
+    expect(point.coordinates).to.have.property('latitude', 59.909207);
+    expect(point.coordinates).to.have.property('longitude', 10.740826);
+  });
+
   it('should generate set coordinates to precision', () => {
     let point = new Point({ latitude: -5.123456, longitude: 25.654321 }, { precision: 3 });
     expect(point.coordinates).to.have.property('latitude', -5.123);
@@ -68,6 +74,12 @@ describe('Point', () => {
     expect(inverted).to.be.instanceof(Array);
     expect(inverted[0]).to.equal(125.6);
     expect(inverted[1]).to.equal(10.1);
+  });
+
+  it('should output Point as Geohash', () => {
+    let point = new Point([ 59.909207, 10.740826 ]);
+    let geohash = point.geohash;
+    expect(geohash).to.equal('u4xsu6jhrms7');
   });
 
   it('should output Point as GeoJSON feature', () => {
@@ -103,20 +115,19 @@ describe('Point', () => {
   });
 
   it('should throw error from invalid arguments', () => {
+    const message = 'Wrong arguments.';
     expect(() => new Point())
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
     expect(() => new Point(null))
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
     expect(() => new Point(123))
-    .to.throw(Error, 'Wrong arguments.');
-    expect(() => new Point('foo'))
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
     expect(() => new Point({ l: 10, a: 20 }))
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
     expect(() => new Point([ 25 ]))
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
     expect(() => new Point([ 10, 25, 39 ]))
-    .to.throw(Error, 'Wrong arguments.');
+    .to.throw(Error, message);
   });
 
   /* UTIL INFO */

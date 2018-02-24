@@ -1,16 +1,17 @@
 'use strict';
 
-const { Base } = require('./common');
+const { Base } = require('./lib/common');
+const geoHash = require('./lib/geohash');
 
 module.exports = class Point extends Base {
   constructor (coordinates, options) {
     const defaults = {
       inverted: false,
-      format: 'normal',
       // 0.11m of precision.
       precision: 6
     };
     if (typeof options === 'boolean') options = { inverted: options };
+    if (typeof options === 'number') options = { precision: options };
     super({
       defaults,
       options
@@ -43,27 +44,35 @@ module.exports = class Point extends Base {
     }
     // BROWSER GEOLOCATION
     else if (coordinates.constructor && coordinates.constructor.name === 'Position') {
-      this._coordinates = {
-        latitude: coordinates.coords.latitude,
-        longitude: coordinates.coords.longitude
-      };
+      this.coordinates = [
+        coordinates.coords.latitude,
+        coordinates.coords.longitude
+      ];
     }
     // IF SIMPLE LATITUDE AND LONGITUDE OBJECT
     else if (coordinates.lat && coordinates.long) {
-      this._coordinates = {
-        latitude: coordinates.lat,
-        longitude: coordinates.long
-      };
+      this.coordinates = [
+        coordinates.lat,
+        coordinates.long
+      ];
     } else if (coordinates.lat && coordinates.lng) {
-      this._coordinates = {
-        latitude: coordinates.lat,
-        longitude: coordinates.lng
-      };
+      this.coordinates = [
+        coordinates.lat,
+        coordinates.lng
+      ];
     } else if (coordinates.latitude && coordinates.longitude) {
-      this._coordinates = {
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude
-      };
+      this.coordinates = [
+        coordinates.latitude,
+        coordinates.longitude
+      ];
+    }
+    // IF GEOHASH
+    else if (typeof coordinates === 'string') {
+      let [ latitude, longitude ] = geoHash.decode(coordinates);
+      this.coordinates = [
+        latitude,
+        longitude
+      ];
     }
     // IF NONE OF THE CONDITIONS MATCH,
     // THROW ERROR
@@ -90,7 +99,7 @@ module.exports = class Point extends Base {
     ) {
       throw new Error('Coordinates are invalid.');
     }
-    
+
     // OPTIONS PRECISION
     if (typeof this._options.precision === 'number') {
       Object.keys(this._coordinates).map(key => {
@@ -123,6 +132,10 @@ module.exports = class Point extends Base {
 
   get arrayInverted () {
     return [ this._coordinates.longitude, this._coordinates.latitude ];
+  }
+
+  get geohash () {
+    return geoHash.encode(this.array);
   }
 
   toJSON () {

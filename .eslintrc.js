@@ -2,10 +2,10 @@
 
 // EXPORTS ESLINT CONFIG
 module.exports = {
-  "extends": '@twiz/eslint-config-twiz',
-  "root": true,
-  "rules": {
-    "strict": [ 2, 'global' ],
-    "brace-style": [ 0 ]
+  'extends': 'eslint-config-josecarneiro',
+  'root': true,
+  'rules': {
+    'strict': [ 2, 'global' ],
+    'brace-style': [ 0 ]
   }
 };
