@@ -43,7 +43,7 @@ module.exports = class Point extends Base {
       }
     }
     // BROWSER GEOLOCATION
-    else if (coordinates.constructor && coordinates.constructor.name === 'Position') {
+    else if (coordinates.coords && coordinates.coords.latitude && coordinates.coords.longitude) {
       this.coordinates = [
         coordinates.coords.latitude,
         coordinates.coords.longitude

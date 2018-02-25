@@ -46,6 +46,13 @@ describe('Point', () => {
     expect(point.coordinates).to.have.property('longitude', 128.3824);
   });
 
+  it('should generate Point from simulated "Position" browser interface.', () => {
+    let position = { coords: new Point([ 10, 12 ]).coordinates };
+    let point = new Point(position);
+    expect(point.coordinates).to.have.property('latitude', 10);
+    expect(point.coordinates).to.have.property('longitude', 12);
+  });
+
   it('should generate Point from geohash.', () => {
     let point = new Point('u4xsu6jhrms7');
     expect(point.coordinates).to.have.property('latitude', 59.909207);
