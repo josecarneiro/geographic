@@ -22,12 +22,12 @@
     "lint": "eslint --ext .js ."
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.18.1",
+    "chai": "^4.2.0",
+    "eslint": "^6.2.2",
     "eslint-config-josecarneiro": "^0.0.2",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^5.0.1",
-    "nodemon": "^1.15.1"
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.19.1"
   }
 }
