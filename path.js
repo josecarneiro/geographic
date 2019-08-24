@@ -1,15 +1,13 @@
 'use strict';
 
-const { Base } = require('./lib/common');
-const geo = require('./lib/geolib');
+const { GenericGeographicClass } = require('./lib/common');
+const geo = require('geolib');
 
 const Point = require('./point');
 
-module.exports = class Path extends Base {
+module.exports = class Path extends GenericGeographicClass {
   constructor (points, options) {
-    super({
-      options
-    });
+    super({ options });
     this._points = [];
     this.points = points;
   }
@@ -51,17 +49,11 @@ module.exports = class Path extends Base {
   }
 
   get length () {
-    let distance = 0;
-    for (let index = 0; index < this.points.length; index++) {
-      if (index) {
-        distance += geo.getDistance(this.points[index - 1].coordinates, this.points[index].coordinates);
-      }
-    }
-    return distance;
+    return geo.getPathLength(this._points.map(({ coordinates }) => coordinates));
   }
 
   get direction () {
-    return geo.getBearing(this.start.coordinates, this.end.coordinates) % 360 / 360;
+    return geo.getGreatCircleBearing(this.start.coordinates, this.end.coordinates) % 360 / 360;
   }
 
   get count () {
@@ -69,22 +61,17 @@ module.exports = class Path extends Base {
   }
 
   toJSON () {
-    let path = [];
-    for (let point of this._points) {
-      path.push(point.toJSON());
-    }
-    return path;
+    return this._points.map(point => point.toJSON());
   }
 
   toGeoJSON (properties) {
-    let object = {
+    return {
       type: 'Feature',
       geometry: {
         type: 'LineString',
         coordinates: this.toJSON()
-      }
+      },
+      ...properties && { properties }
     };
-    if (properties !== undefined) object.properties = properties;
-    return object;
   }
 };

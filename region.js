@@ -1,16 +1,13 @@
 'use strict';
 
-const { Base } = require('./lib/common');
-
-// const geo = require('./lib/geolib');
+const { GenericGeographicClass } = require('./lib/common');
+// const geo = require('geolib');
 
 const Path = require('./path');
 
-module.exports = class Region extends Base {
+module.exports = class Region extends GenericGeographicClass {
   constructor (paths, options) {
-    super({
-      options
-    });
+    super({ options });
     this._paths = [];
     this.paths = paths;
   }
@@ -74,11 +71,7 @@ module.exports = class Region extends Base {
   }
 
   toJSON () {
-    let paths = [];
-    for (let path of this._paths) {
-      paths.push(path.toJSON());
-    }
-    return paths;
+    return this._paths.map(path => path.toJSON());
   }
 
   add (path) {

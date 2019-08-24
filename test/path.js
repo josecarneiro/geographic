@@ -1,11 +1,13 @@
 'use strict';
 
 /* DEPENDENCIES */
-const expect = require('chai').expect;
+
+const { expect } = require('chai');
 const { version } = require('./../package');
 const Path = require('./../path');
 
 /* PATH TESTS */
+
 describe('Path', () => {
 
   /* PATH CONSTRUCTORS */
@@ -28,10 +30,11 @@ describe('Path', () => {
 
   it('should get distance between start and finish', () => {
     expect(new Path([ [ 38.7, -9.13 ], [ 24.12, -33.45 ], [ 38.8, -7.16 ] ]).distance)
-    .to.equal(new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ] ]).distance);
+      .to.equal(new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ] ]).distance);
+
     // DISTANCE BETWEEN TWO POINTS IN DIFFERENT EAST-WEST HEMISPHERES
     expect(new Path([ [ 0, -179.5 ], [ 0, 179.5 ] ]).distance)
-    .to.equal(new Path([ [ 0, -178.5 ], [ 0, -179.5 ] ]).distance);
+      .to.equal(new Path([ [ 0, -178.5 ], [ 0, -179.5 ] ]).distance);
   });
 
   it('should get length of path', () => {
@@ -41,7 +44,8 @@ describe('Path', () => {
 
   it('should get length of multiple point path', () => {
     let path = new Path([ [ 38.7, -9.13 ], [ 38.8, -7.16 ], [ 38.7, -9.13 ] ]);
-    expect(path.length).to.equal(171609 * 2);
+    // expect(path.length).to.equal(171609 * 2);
+    expect(path.length).to.equal(342774);
   });
 
   it('should get direction of path', () => {
@@ -63,16 +67,16 @@ describe('Path', () => {
 
   it('should throw error from wrong arguments', () => {
     expect(() => new Path())
-    .to.throw(Error, 'Wrong arguments.');
+      .to.throw(Error, 'Wrong arguments.');
     expect(() => new Path([ 10, 10 ]))
-    .to.throw(Error, 'Wrong arguments.');
+      .to.throw(Error, 'Wrong arguments.');
     expect(() => new Path([ [ 20, 30 ] ]))
-    .to.throw(Error, 'Path requires 2 or more points.');
+      .to.throw(Error, 'Path requires 2 or more points.');
   });
 
   it('should throw error from invalid coordinates', () => {
     expect(() => new Path([ [ 105, 21 ], [ 10, 20 ] ]))
-    .to.throw(Error, 'Coordinates are invalid.');
+      .to.throw(Error, 'Coordinates are invalid.');
   });
 
   it('should only output coordinates when stringified to JSON', () => {

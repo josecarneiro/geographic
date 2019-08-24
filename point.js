@@ -1,14 +1,13 @@
 'use strict';
 
-const { Base } = require('./lib/common');
+const { GenericGeographicClass } = require('./lib/common');
 const geoHash = require('./lib/geohash');
 
-module.exports = class Point extends Base {
+module.exports = class Point extends GenericGeographicClass {
   constructor (coordinates, options) {
     const defaults = {
       inverted: false,
-      // 0.11m of precision.
-      precision: 6
+      precision: 6 // 0.11m of precision
     };
     if (typeof options === 'boolean') options = { inverted: options };
     if (typeof options === 'number') options = { precision: options };
@@ -24,10 +23,12 @@ module.exports = class Point extends Base {
     if (!coordinates) {
       throw new Error('Wrong arguments.');
     }
+  
     // OTHER GEO POINT OBJECT
-    else if (coordinates && coordinates.constructor.name === 'Point') {
+    else if (coordinates && coordinates instanceof this.constructor) {
       this.coordinates = coordinates.coordinates;
     }
+
     // ARRAY WITH LONGITUDE AND LATITUDE
     else if (coordinates instanceof Array && coordinates.length === 2) {
       if (this._options.inverted) {
@@ -42,6 +43,7 @@ module.exports = class Point extends Base {
         };
       }
     }
+  
     // BROWSER GEOLOCATION
     else if (coordinates.coords && coordinates.coords.latitude && coordinates.coords.longitude) {
       this.coordinates = [
@@ -49,6 +51,7 @@ module.exports = class Point extends Base {
         coordinates.coords.longitude
       ];
     }
+  
     // IF SIMPLE LATITUDE AND LONGITUDE OBJECT
     else if (coordinates.lat && coordinates.long) {
       this.coordinates = [
@@ -66,6 +69,7 @@ module.exports = class Point extends Base {
         coordinates.longitude
       ];
     }
+  
     // IF GEOHASH
     else if (typeof coordinates === 'string') {
       let [ latitude, longitude ] = geoHash.decode(coordinates);
@@ -74,8 +78,8 @@ module.exports = class Point extends Base {
         longitude
       ];
     }
-    // IF NONE OF THE CONDITIONS MATCH,
-    // THROW ERROR
+  
+    // IF NONE OF THE CONDITIONS MATCH, THROW ERROR
     else {
       throw new Error('Wrong arguments.');
     }
@@ -102,8 +106,8 @@ module.exports = class Point extends Base {
 
     // OPTIONS PRECISION
     if (typeof this._options.precision === 'number') {
-      Object.keys(this._coordinates).map(key => {
-        this._coordinates[key] = parseFloat(this._coordinates[key].toFixed(this._options.precision));
+      Object.entries(this._coordinates).map(([ key, value ]) => {
+        this._coordinates[key] = parseFloat(value.toFixed(this._options.precision));
       });
     }
   }
@@ -143,14 +147,13 @@ module.exports = class Point extends Base {
   }
 
   toGeoJSON (properties) {
-    let object = {
+    return {
       type: 'Feature',
       geometry: {
         type: 'Point',
         coordinates: this.arrayInverted
-      }
+      },
+      ...properties && { properties }
     };
-    if (properties !== undefined) object.properties = properties;
-    return object;
   }
 };

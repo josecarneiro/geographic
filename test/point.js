@@ -1,11 +1,13 @@
 'use strict';
 
 /* DEPENDENCIES */
-const expect = require('chai').expect;
+
+const { expect } = require('chai');
 const { version } = require('./../package');
 const Point = require('./../point');
 
 /* POINT TESTS */
+
 describe('Point', () => {
 
   /* POINT CONSTRUCTORS */
@@ -113,28 +115,28 @@ describe('Point', () => {
 
   it('should throw error from invalid latitude', () => {
     expect(() => new Point({ latitude: 105, longitude: 21 }))
-    .to.throw(Error, 'Coordinates are invalid.');
+      .to.throw(Error, 'Coordinates are invalid.');
   });
 
   it('should throw error from invalid longitude', () => {
     expect(() => new Point({ latitude: 50, longitude: -190 }))
-    .to.throw(Error, 'Coordinates are invalid.');
+      .to.throw(Error, 'Coordinates are invalid.');
   });
 
   it('should throw error from invalid arguments', () => {
     const message = 'Wrong arguments.';
     expect(() => new Point())
-    .to.throw(Error, message);
+      .to.throw(Error, message);
     expect(() => new Point(null))
-    .to.throw(Error, message);
+      .to.throw(Error, message);
     expect(() => new Point(123))
-    .to.throw(Error, message);
+      .to.throw(Error, message);
     expect(() => new Point({ l: 10, a: 20 }))
-    .to.throw(Error, message);
+      .to.throw(Error, message);
     expect(() => new Point([ 25 ]))
-    .to.throw(Error, message);
+      .to.throw(Error, message);
     expect(() => new Point([ 10, 25, 39 ]))
-    .to.throw(Error, message);
+      .to.throw(Error, message);
   });
 
   /* UTIL INFO */

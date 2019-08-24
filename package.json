@@ -29,5 +29,8 @@
     "eslint-plugin-standard": "^4.0.1",
     "mocha": "^5.2.0",
     "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "geolib": "^3.0.4"
   }
 }

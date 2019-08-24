@@ -1,7 +1,8 @@
 'use strict';
 
 /* DEPENDENCIES */
-const expect = require('chai').expect;
+
+const { expect } = require('chai');
 const { version } = require('./../package');
 const Region = require('./../region');
 
